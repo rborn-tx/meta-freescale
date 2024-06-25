@@ -162,7 +162,7 @@ do_compile() {
     if ${DEPLOY_OPTEE}; then
         cp ${DEPLOY_DIR_IMAGE}/tee.bin ${BOOT_STAGING}
     fi
-   for type in ${UBOOT_CONFIG}; do
+    for type in ${UBOOT_CONFIG}; do
         if [ "${@d.getVarFlags('UBOOT_DTB_NAME')}" = "None" ]; then
             UBOOT_DTB_NAME_FLAGS="${type}:${UBOOT_DTB_NAME}"
         else
