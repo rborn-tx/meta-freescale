@@ -71,11 +71,6 @@ SOC_FAMILY:mx93-generic-bsp   = "mx93"
 
 REV_OPTION ?= "REV=${IMX_SOC_REV_UPPER}"
 
-do_uboot_assemble_fitimage:prepend:imx-generic-bsp() {
-    for config in ${UBOOT_MACHINE}; do
-        mkdir -p ${B}/${config}
-    done
-}
 
 compile_mx8m() {
     bbnote 8MQ/8MM/8MN/8MP boot binary build
