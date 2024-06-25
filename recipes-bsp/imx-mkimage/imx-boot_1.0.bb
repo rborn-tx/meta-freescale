@@ -185,6 +185,7 @@ do_compile() {
                 BOOT_CONFIG_MACHINE_EXTRA="${BOOT_NAME}-${MACHINE}-${UBOOT_CONFIG_EXTRA}.bin"
 
                 for target in ${IMXBOOT_TARGETS}; do
+		    # TODO: Move into compile_helper(target)
                     compile_${SOC_FAMILY}
                     if [ "$target" = "flash_linux_m4_no_v2x" ]; then
                         # Special target build for i.MX 8DXL with V2X off
@@ -306,6 +307,7 @@ do_deploy() {
         UBOOT_NAME_EXTRA="u-boot-${MACHINE}.bin-${UBOOT_CONFIG_EXTRA}"
         BOOT_CONFIG_MACHINE_EXTRA="${BOOT_NAME}-${MACHINE}-${UBOOT_CONFIG_EXTRA}.bin"
 
+	# TODO: (BEGIN) Move into deploy_helper(type)
         if [ -e ${DEPLOY_DIR_IMAGE}/u-boot-spl.bin-${MACHINE}-${UBOOT_CONFIG_EXTRA} ] ; then
             install -m 0644 ${DEPLOY_DIR_IMAGE}/u-boot-spl.bin-${MACHINE}-${UBOOT_CONFIG_EXTRA} \
                                                              ${DEPLOYDIR}/${BOOT_TOOLS}
@@ -329,6 +331,7 @@ do_deploy() {
         else
             bbwarn "Use custom wks.in for $UBOOT_CONFIG = $type"
         fi
+	# TODO: (END) Move into deploy_helper()
 
         unset UBOOT_CONFIG_EXTRA
         unset UBOOT_NAME_EXTRA
